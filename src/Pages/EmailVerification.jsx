@@ -12,8 +12,8 @@ const EmailVerification = () => {
   useEffect(() => {
     const verifyEmail = async () => {
       try {
-        const url = `https://fixonest.onrender.com/api/confirmation/${params.id}/${params.email}/${params.token}`;
-        const response = await axios.get(url); // call the API
+        const url = `confirmation/${params.id}/${params.email}/${params.token}`;
+        const response = await axiosInstance.get(url); // call the API
         // console.log(response.data);
 
         if (response.data.isVerified) {
