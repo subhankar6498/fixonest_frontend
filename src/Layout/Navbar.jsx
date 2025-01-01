@@ -27,7 +27,6 @@ const Navbar = () => {
 
   const [open, setOpen] = React.useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const [profileImage, setProfileImage] = useState("");
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -162,23 +161,6 @@ const Navbar = () => {
     </Box>
   );
 
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (user) {
-      const userData = JSON.parse(user);
-      // Check if the profile image is a complete URL or base64 string
-      if (
-        userData.profileImage?.startsWith("data:image") ||
-        userData.profileImage?.startsWith("http")
-      ) {
-        setProfileImage(userData.profileImage);
-      } else if (userData.profileImage) {
-        // If it's just a filename, use it directly without additional URL construction
-        setProfileImage(userData.profileImage);
-      }
-    }
-  }, []);
-
   return (
     <>
       <header className="header-section">
@@ -234,7 +216,9 @@ const Navbar = () => {
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar
                       alt="A"
-                      src={`${ImageUrl}/${profileImage}`}
+                      src={`${ImageUrl}/${
+                        JSON.parse(localStorage.getItem("user")).profileImage
+                      }`}
                     ></Avatar>
                   </IconButton>
                 </Tooltip>
