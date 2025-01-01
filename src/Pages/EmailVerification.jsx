@@ -12,7 +12,7 @@ const EmailVerification = () => {
   useEffect(() => {
     const verifyEmail = async () => {
       try {
-        const url = `https://fixonest.netlify.app/api/confirmation/${params.id}/${params.email}/${params.token}`;
+        const url = `https://https://fixonest.onrender.com/api/confirmation/${params.id}/${params.email}/${params.token}`;
         const response = await axios.get(url); // call the API
         // console.log(response.data);
 
